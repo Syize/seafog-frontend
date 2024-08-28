@@ -1,1 +1,7 @@
-<p>canvas works!</p>
+<div class="outer-div">
+    <div *ngFor="let array of imageArray" [ngStyle]="innerDivStyle">
+        <div *ngFor="let url of array" class="image-container">
+            <img ngSrc="{{url}}" fill priority>
+        </div>
+    </div>
+</div>

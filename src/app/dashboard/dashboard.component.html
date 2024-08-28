@@ -1,26 +1,67 @@
 <div class="head">
-    <h1>海雾监测与反演</h1>
+    <h1>海洋遥感与气象监测系统</h1>
+    <p class="english-name">Marine Remote Sensing and</p>
+    <p class="english-name">Meteorological Monitoring System</p>
     <p class="author">Seafog Lab</p>
 </div>
 <div class="controller">
-    <div class="select-date">
-        <select #selectYear (change)="onSelectYearChange(selectYear.value)">
-            <option *ngFor="let year of years">
-                {{year}}
-            </option>
-        </select>年
-        <select #selectMonth (change)="onSelectMonthChange(selectMonth.value)">
-            <option *ngFor="let month of monthes">
-                {{month}}
-            </option>
-        </select>月
-        <select #selectDay (change)="onSelectDayChange(selectDay.value)">
-            <option *ngFor="let day of days">
-                {{day}}
-            </option>
-        </select>日
+    <div class="controller-title">
+        <div class="div-block">
+            <p class="p-text">选择日期:</p>
+        </div>
+        <div class="div-block">
+            <p class="p-text">选择产品:</p>
+        </div>
+    </div>
+    <div class="controller-content">
+        <div class="div-block">
+            <select #selectYear (change)="onSelectYearChange(selectYear.value)">
+                <option *ngFor="let year of years">
+                    {{year}}
+                </option>
+            </select>
+            <p class="p-text">年</p>
+            <select #selectMonth (change)="onSelectMonthChange(selectMonth.value)">
+                <option *ngFor="let month of monthes">
+                    {{month}}
+                </option>
+            </select>
+            <p class="p-text">月</p>
+            <select #selectDay (change)="onSelectDayChange(selectDay.value)">
+                <option *ngFor="let day of days">
+                    {{day}}
+                </option>
+            </select>
+            <p class="p-text">日</p>
+            <select #selectHour (change)="onSelectHourChange(selectHour.value)">
+                <option *ngFor="let hour of hours">
+                    {{hour}}
+                </option>
+            </select>
+            <p class="p-text">小时</p>
+        </div>
+        <div class="div-block">
+            <input type="checkbox">
+            <p class="p-text">云检测 CLM</p>
+        </div>
+        <div class="div-block">
+            <input type="checkbox">
+            <p class="p-text">海雾 SFM</p>
+        </div>
     </div>
 </div>
 <div class="footer">
-    <p>This is a footer.</p>
+    <div class="footer-copyright">
+        <div class="footer-block">
+            <p class="p-footer">Copyright © 2024</p>
+        </div>
+        <div class="footer-block">
+            <a class="a-footer" href="http://ranyz.seafog.syize.cn">海洋遥感与气象监测系统</a>
+        </div>
+    </div>
+    <div class="footer-author">
+        <div class="footer-block">
+            <p class="p-footer">System Maintainer: Syize, Ranyz</p>
+        </div>
+    </div>
 </div>

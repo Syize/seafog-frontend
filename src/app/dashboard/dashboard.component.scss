@@ -1,24 +1,151 @@
+@mixin selectStyle() {
+    height: 20px;
+    border-radius: 5px;
+}
+
+@mixin selectHoverStyle() {
+    @include selectStyle;
+    box-shadow: rgb(14, 155, 221) 0px 0px 4px 1px;
+    transition: box-shadow 0.3s;
+}
+
+@mixin disableSelection() {
+    /* Safari */
+    -webkit-user-select: none;
+    /* IE 10 and IE 11 */
+    -ms-user-select: none;
+    /* Standard syntax */
+    user-select: none;
+}
+
+@mixin disableFocusOutline() {
+    outline: none;
+}
+
+@mixin footerStyle() {
+    display: inline;
+    margin-left: 2px;
+    margin-right: 5px;
+}
+
 .head {
-    height: 10%;
+    @include disableSelection;
+    height: 15%;
 }
 
 h1 {
     text-align: center;
+    margin-bottom: 2%;
 }
 
 .author {
     text-align: center;
 }
 
+.english-name {
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    margin: 0%;
+}
+
 .controller {
-    height: 75%;
+    height: 70%;
+    width: 100%;
+    display: inline-flex;
+}
+
+.controller-title {
+    height: 100%;
+    width: 20%;
+}
+
+.controller-content {
+    height: 100%;
+    width: 80%;
 }
 
 .footer {
     height: 10%;
+    display: block;
 }
 
-.select-date {
+.footer-copyright {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-author {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-block {
+    @include disableSelection;
     display: inline-flexbox;
-    padding: 5%;
+    padding: 5px;
+    padding-left: 15px;
+    width: 100%;
+    height: 25px;
+}
+
+.footer-block {
+    @include disableSelection;
+    display: inline-flexbox;
+    // padding: 10px;
+}
+
+.p-text {
+    display: inline;
+    margin-left: 2px;
+    margin-right: 5px;
+}
+
+.p-footer {
+    @include footerStyle;
+    // display: inline;
+    // margin-left: 2px;
+    // margin-right: 5px;
+}
+
+.a-footer:link {
+    @include footerStyle;
+    color: rgb(61, 61, 61);
+}
+
+.a-footer:visited {
+    @include footerStyle;
+    color: rgb(61, 61, 61);
+}
+
+.a-footer:active {
+    @include footerStyle;
+    color: rgb(109, 109, 109);
+}
+
+select {
+    @include selectStyle;
+}
+
+select:hover {
+    @include selectHoverStyle;
+}
+
+select:active {
+    @include selectStyle;
+    @include disableFocusOutline;
+}
+
+select:focus {
+    @include selectStyle;
+    @include disableFocusOutline;
+}
+
+select input:focus {
+    @include selectHoverStyle;
+    @include disableFocusOutline;
 }
