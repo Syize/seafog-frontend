@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgFor } from "@angular/common";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
 import { QueryDateService } from "../query-date.service";
 
 @Component({
@@ -7,6 +9,8 @@ import { QueryDateService } from "../query-date.service";
   standalone: true,
   imports: [
     NgFor,
+    MatInputModule,
+    MatSelectModule,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
@@ -22,6 +26,7 @@ export class DashboardComponent implements OnInit {
   selectYear!: number;
   selectMonth!: number;
   selectDay!: number;
+  selectHour!: number;
   currentYear!: number;
   currentMonth!: number;
   currentDay!: number;
@@ -40,26 +45,29 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  onSelectYearChange(year: String): void {
-    this.selectYear = Number(year)
+  onSelectYearChange(year: number): void {
+    console.log(year)
+    this.selectYear = year
 
     this.monthes = this._getMonthArray()
 
     this.days = this._getDayArray()
   }
 
-  onSelectMonthChange(month: String): void {
-    this.selectMonth = Number(month)
+  onSelectMonthChange(month: number): void {
+    console.log(month)
+    this.selectMonth = month
 
     this.days = this._getDayArray()
   }
 
-  onSelectDayChange(day: String): void {
-    this.queryDate.setImageDate(day)
+  onSelectDayChange(day: number): void {
+    console.log(day)
+    this.queryDate.setImageDate(day.toString())
   }
 
-  onSelectHourChange(hour: String): void {
-
+  onSelectHourChange(hour: number): void {
+    console.log(hour)
   }
 
   onCLMChange(value: String) {

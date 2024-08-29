@@ -15,12 +15,55 @@
     </div>
     <div class="controller-content">
         <div class="div-block">
-            <select #selectYear (change)="onSelectYearChange(selectYear.value)">
+            <mat-form-field>
+                <mat-select placeholder="Year" (selectionChange)="onSelectYearChange($event.value)"
+                    [(value)]="selectYear">
+                    @for (year of years; track year) {
+                    <mat-option [value]="year">
+                        {{ year }}
+                    </mat-option>
+                    }
+                </mat-select>
+                <p class="p-text">年</p>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="Month" (selectionChange)="onSelectMonthChange($event.value)"
+                    [(value)]="selectMonth">
+                    @for (month of monthes; track month) {
+                    <mat-option [value]="month">
+                        {{ month }}
+                    </mat-option>
+                    }
+                </mat-select>
+                <p class="p-text">月</p>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="Day" (selectionChange)="onSelectDayChange($event.value)" [(value)]="selectDay">
+                    @for (day of days; track day) {
+                    <mat-option [value]="day">
+                        {{ day }}
+                    </mat-option>
+                    }
+                </mat-select>
+                <p class="p-text">日</p>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="Hour" (selectionChange)="onSelectHourChange($event.value)"
+                    [(value)]="selectHour">
+                    @for (hour of hours; track hour) {
+                    <mat-option [value]="hour">
+                        {{ hour }}
+                    </mat-option>
+                    }
+                </mat-select>
+                <p class="p-text">小时</p>
+            </mat-form-field>
+            <!-- <select #selectYear (change)="onSelectYearChange(selectYear.value)">
                 <option *ngFor="let year of years">
                     {{year}}
                 </option>
-            </select>
-            <p class="p-text">年</p>
+            </select> -->
+            <!-- <p class="p-text">年</p>
             <select #selectMonth (change)="onSelectMonthChange(selectMonth.value)">
                 <option *ngFor="let month of monthes">
                     {{month}}
@@ -38,7 +81,7 @@
                     {{hour}}
                 </option>
             </select>
-            <p class="p-text">小时</p>
+            <p class="p-text">小时</p> -->
         </div>
         <div class="div-block">
             <input #value type="checkbox" (change)="onCLMChange(value.value)">
