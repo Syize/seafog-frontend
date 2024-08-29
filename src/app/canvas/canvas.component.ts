@@ -27,7 +27,7 @@ export class CanvasComponent implements OnInit {
 
   imageNum = 1
   imageArray = [
-    ["http://img.seafog.syize.cn/1.jpg"],
+    ["http://img.seafog.syize.cn/6.jpg"],
   ]
 
   testImageCounter = 1
