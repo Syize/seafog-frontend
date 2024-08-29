@@ -157,6 +157,15 @@
     vite "5.4.0"
     watchpack "2.4.1"
 
+"@angular/cdk@^18.2.1":
+  version "18.2.1"
+  resolved "https://registry.npmmirror.com/@angular/cdk/-/cdk-18.2.1.tgz#ee61d6f0619d77467887ffd79873fb03cffed443"
+  integrity sha512-6y4MmpEPXze6igUHkLsBUPkxw32F8+rmW0xVXZchkSyGlFgqfh53ueXoryWb0qL4s5enkNY6AzXnKAqHfPNkVQ==
+  dependencies:
+    tslib "^2.3.0"
+  optionalDependencies:
+    parse5 "^7.1.2"
+
 "@angular/cli@^18.2.1":
   version "18.2.1"
   resolved "https://registry.npmjs.org/@angular/cli/-/cli-18.2.1.tgz#03cccb36c035ab028c86548f4e731abff03799c5"
@@ -219,6 +228,13 @@
   version "18.2.1"
   resolved "https://registry.npmjs.org/@angular/forms/-/forms-18.2.1.tgz#751e3f04564fc6eefab0ab23ec2867faae8a8ee7"
   integrity sha512-T7z8KUuj2PoPxrMrAruQVJha+x4a9Y6IrKYtArgOQQlTwCEJuqpVYuOk5l3fwWpHE9bVEjvgkAMI1D5YXA/U6w==
+  dependencies:
+    tslib "^2.3.0"
+
+"@angular/material@^18.2.1":
+  version "18.2.1"
+  resolved "https://registry.npmmirror.com/@angular/material/-/material-18.2.1.tgz#d8d1c01569fdfe4835cff7636246e2102d1901ac"
+  integrity sha512-DBSJGqLttT9vYpLGWTuuRoOKd1mNelS0jnNo7jNZyMpjcGfuhNzmPtYiBkXfNsAl7YoXoUmX8+4uh1JZspQGqA==
   dependencies:
     tslib "^2.3.0"
 
@@ -5355,9 +5371,9 @@ parse5-sax-parser@^7.0.0:
   dependencies:
     parse5 "^7.0.0"
 
-parse5@^7.0.0:
+parse5@^7.0.0, parse5@^7.1.2:
   version "7.1.2"
-  resolved "https://registry.npmjs.org/parse5/-/parse5-7.1.2.tgz#0736bebbfd77793823240a23b7fc5e010b7f8e32"
+  resolved "https://registry.npmmirror.com/parse5/-/parse5-7.1.2.tgz#0736bebbfd77793823240a23b7fc5e010b7f8e32"
   integrity sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw==
   dependencies:
     entities "^4.4.0"

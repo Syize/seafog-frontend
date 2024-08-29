@@ -6,7 +6,11 @@ import { CanvasComponent } from "./canvas/canvas.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, DashboardComponent, CanvasComponent],
+  imports: [
+    RouterOutlet,
+    DashboardComponent,
+    CanvasComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

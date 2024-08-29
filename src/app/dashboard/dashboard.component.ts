@@ -62,6 +62,14 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  onCLMChange(value: String) {
+    console.log(value)
+  }
+
+  onSFMChange(value: String) {
+    console.log(value)
+  }
+
   _getMonthArray(): Array<number> {
     if (this.selectYear < this.currentYear) {
       return Array.from({ length: 12 }, (_, i) => 1 + i)
@@ -85,13 +93,5 @@ export class DashboardComponent implements OnInit {
     else {
       return Array.from({ length: 30 }, (_, i) => 1 + i)
     }
-  }
-
-  button1() {
-    this.queryDate.addButton()
-  }
-
-  button2() {
-    this.queryDate.clearButton()
   }
 }

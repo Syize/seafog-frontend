@@ -41,11 +41,11 @@
             <p class="p-text">小时</p>
         </div>
         <div class="div-block">
-            <input type="checkbox">
+            <input #value type="checkbox" (change)="onCLMChange(value.value)">
             <p class="p-text">云检测 CLM</p>
         </div>
         <div class="div-block">
-            <input type="checkbox">
+            <input #value type="checkbox" (change)="onSFMChange(value.value)">
             <p class="p-text">海雾 SFM</p>
         </div>
     </div>
