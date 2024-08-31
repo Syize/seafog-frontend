@@ -15,38 +15,42 @@
     </div>
     <div class="controller-content">
         <div class="div-block">
-            <select #selectYear (change)="onSelectYearChange(selectYear.value)">
-                <option *ngFor="let year of years">
+            <select [(ngModel)]="selectYear" (ngModelChange)="onSelectYearChange()">
+                <option *ngFor="let year of years" [ngValue]="year">
                     {{year}}
                 </option>
             </select>
             <p class="p-text">年</p>
-            <select #selectMonth (change)="onSelectMonthChange(selectMonth.value)">
-                <option *ngFor="let month of monthes">
+            <select [(ngModel)]="selectMonth" (ngModelChange)="onSelectMonthChange()">
+                <option *ngFor="let month of monthes" [ngValue]="month">
                     {{month}}
                 </option>
             </select>
             <p class="p-text">月</p>
-            <select #selectDay (change)="onSelectDayChange(selectDay.value)">
-                <option *ngFor="let day of days">
+            <select [(ngModel)]="selectDay" (ngModelChange)="onSelectDayChange()">
+                <option *ngFor="let day of days" [ngValue]="day">
                     {{day}}
                 </option>
             </select>
             <p class="p-text">日</p>
-            <select #selectHour (change)="onSelectHourChange(selectHour.value)">
-                <option *ngFor="let hour of hours">
+            <select [(ngModel)]="selectHour" (ngModelChange)="onSelectHourChange()">
+                <option *ngFor="let hour of hours" [ngValue]="hour">
                     {{hour}}
                 </option>
             </select>
             <p class="p-text">小时</p>
         </div>
         <div class="div-block">
-            <input #value type="checkbox" (change)="onCLMChange(value.value)">
-            <p class="p-text">云检测 CLM</p>
+            <label>
+                <input type="checkbox" [(ngModel)]="CLMChecked" (ngModelChange)="onCLMChange($event)">
+                云检测 CLM
+            </label>
         </div>
         <div class="div-block">
-            <input #value type="checkbox" (change)="onSFMChange(value.value)">
-            <p class="p-text">海雾 SFM</p>
+            <label>
+                <input type="checkbox" [(ngModel)]="SFMChecked" (ngModelChange)="onSFMChange($event)">
+                海雾 SFM
+            </label>
         </div>
     </div>
 </div>

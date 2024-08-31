@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgFor } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 import { QueryDateService } from "../query-date.service";
 
 @Component({
@@ -7,6 +8,7 @@ import { QueryDateService } from "../query-date.service";
   standalone: true,
   imports: [
     NgFor,
+    FormsModule,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
@@ -22,52 +24,64 @@ export class DashboardComponent implements OnInit {
   selectYear!: number;
   selectMonth!: number;
   selectDay!: number;
+  selectHour!: number;
   currentYear!: number;
   currentMonth!: number;
   currentDay!: number;
+  currentHour!: number;
+  CLMChecked: boolean = false;
+  SFMChecked: boolean = false;
 
   ngOnInit(): void {
     let currentDate = new Date()
     this.currentYear = currentDate.getFullYear()
-    this.currentMonth = currentDate.getMonth()
-    this.currentDay = currentDate.getDay()
+    this.currentMonth = currentDate.getMonth() + 1  // WTF is this ???
+    this.currentDay = currentDate.getDate()
+    this.currentHour = currentDate.getHours()
+
+    console.log(`current date: ${this.currentYear}-${this.currentMonth}-${this.currentDay} ${this.currentHour}:00:00`)
+
     let startYear = 2015
     this.years = Array.from({ length: this.currentYear - startYear + 1 }, (_, i) => this.currentYear - i)
 
     this.selectYear = this.currentYear
-    this.selectMonth = 1
-    this.selectDay = 1
+    this.selectMonth = this.currentMonth
+    this.days = this._getDayArray()
+    this.selectDay = this.currentDay
+    this.selectHour = this.currentHour
 
   }
 
-  onSelectYearChange(year: String): void {
-    this.selectYear = Number(year)
-
+  onSelectYearChange(): void {
     this.monthes = this._getMonthArray()
 
+    this.onSelectMonthChange()
+  }
+
+  onSelectMonthChange(): void {
     this.days = this._getDayArray()
+
+    console.log(this.selectDay)
+    console.log(this.days[this.days.length - 1])
+    if (this.selectDay > this.days[this.days.length - 1]) {
+      this.selectDay = this.days[this.days.length - 1]
+    }
   }
 
-  onSelectMonthChange(month: String): void {
-    this.selectMonth = Number(month)
-
-    this.days = this._getDayArray()
-  }
-
-  onSelectDayChange(day: String): void {
-    this.queryDate.setImageDate(day)
-  }
-
-  onSelectHourChange(hour: String): void {
+  onSelectDayChange(): void {
 
   }
 
-  onCLMChange(value: String) {
-    console.log(value)
+  onSelectHourChange(): void {
+
   }
 
-  onSFMChange(value: String) {
-    console.log(value)
+  onCLMChange(value: boolean) {
+    this.queryDate.setCLMImageStatus(value)
+  }
+
+  onSFMChange(value: boolean) {
+    this.queryDate.setSFMImageStatus(value)
   }
 
   _getMonthArray(): Array<number> {

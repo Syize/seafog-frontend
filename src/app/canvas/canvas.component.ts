@@ -25,6 +25,12 @@ export class CanvasComponent implements OnInit {
     'justify-content': 'center'
   }
 
+  imageMap = {
+    "VIS": "",
+    "CLM": "",
+    "SFM": "",
+  }
+
   imageNum = 1
   imageArray = [
     ["http://img.seafog.syize.cn/6.jpg"],
@@ -37,18 +43,7 @@ export class CanvasComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    this.queryDate.getImageDate().subscribe(this.onImageDateChange)
-    this.queryDate.addButtonSubscribe().subscribe((value) => {
-      console.log(this.imageNum)
-      if (this.imageNum == 4) {
-        return
-      }
-      this.imageNum++
-      this.addImageUrl("http://img.seafog.syize.cn/" + this.imageNum + ".jpg")
-    })
-    this.queryDate.clearButtonSubscribe().subscribe((value) => {
-      this.removeImageUrl()
-    })
+
   }
 
   setInnerDivStyle() {

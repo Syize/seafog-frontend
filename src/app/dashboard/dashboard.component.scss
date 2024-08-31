@@ -30,7 +30,7 @@
 
 .head {
     @include disableSelection;
-    height: 15%;
+    height: 20%;
 }
 
 h1 {
@@ -40,6 +40,7 @@ h1 {
 
 .author {
     text-align: center;
+    border-width: 0;
 }
 
 .english-name {
@@ -50,9 +51,11 @@ h1 {
 }
 
 .controller {
-    height: 70%;
+    height: 60%;
     width: 100%;
     display: inline-flex;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .controller-title {
@@ -101,6 +104,12 @@ h1 {
 
 .p-text {
     display: inline;
+    margin-left: 2px;
+    margin-right: 5px;
+}
+
+.checkbox-label {
+    // display: inline;
     margin-left: 2px;
     margin-right: 5px;
 }

@@ -7,8 +7,8 @@ import { Subject } from "rxjs";
 export class QueryDateService {
 
   private imageDate: Subject<String> = new Subject<String>()
-  private temp: Subject<number> = new Subject<number>()
-  private temp2: Subject<number> = new Subject<number>()
+  private CLMImageStatus: Subject<boolean> = new Subject<boolean>()
+  private SFMImageStatus: Subject<boolean> = new Subject<boolean>()
 
   constructor() { }
 
@@ -20,20 +20,20 @@ export class QueryDateService {
     return this.imageDate.asObservable()
   }
 
-  addButton() {
-    this.temp.next(1)
+  setCLMImageStatus(value: boolean) {
+    this.CLMImageStatus.next(value)
   }
 
-  addButtonSubscribe() {
-    return this.temp.asObservable()
+  isCLMImageDisplay() {
+    return this.CLMImageStatus.asObservable()
   }
 
-  clearButton() {
-    this.temp2.next(1)
+  setSFMImageStatus(value: boolean) {
+    this.SFMImageStatus.next(value)
   }
 
-  clearButtonSubscribe() {
-    return this.temp2.asObservable()
+  isSFMImageDisplay() {
+    return this.SFMImageStatus.asObservable()
   }
 
 }
