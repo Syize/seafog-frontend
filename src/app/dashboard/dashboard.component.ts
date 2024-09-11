@@ -29,8 +29,19 @@ export class DashboardComponent implements OnInit {
   currentMonth!: number;
   currentDay!: number;
   currentHour!: number;
+
   CLMChecked: boolean = false;
   SFMChecked: boolean = false;
+  CLPChecked: boolean = false;
+  FOTChecked: boolean = false;
+  FERChecked: boolean = false;
+  LWPChecked: boolean = false;
+  CSRChecked: boolean = false;
+  SSTChecked: boolean = false;
+
+  displayedImageNum = 1;
+  displayImageLimitNum = 4;
+  isDisable = false;
 
   ngOnInit(): void {
     let currentDate = new Date()
@@ -66,22 +77,83 @@ export class DashboardComponent implements OnInit {
     if (this.selectDay > this.days[this.days.length - 1]) {
       this.selectDay = this.days[this.days.length - 1]
     }
+
+    this.onSelectDayChange()
   }
 
   onSelectDayChange(): void {
-
+    this.onSelectDayChange()
   }
 
   onSelectHourChange(): void {
-
+    this.queryDate.setImageDate({
+      "year": this.selectYear,
+      "month": this.selectMonth,
+      "day": this.selectDay,
+      "hour": this.selectHour
+    })
   }
 
   onCLMChange(value: boolean) {
+    this.CLMChecked = value
+    this._onProductCheck(value)
     this.queryDate.setCLMImageStatus(value)
   }
 
+  onCLPChange(value: boolean) {
+    this.CLPChecked = value
+    this._onProductCheck(value)
+    this.queryDate.setCLPImageStatus(value)
+  }
+
   onSFMChange(value: boolean) {
+    this.SFMChecked = value
+    this._onProductCheck(value)
     this.queryDate.setSFMImageStatus(value)
+  }
+
+  onFOTChange(value: boolean) {
+    this.FOTChecked = value
+    this._onProductCheck(value)
+    this.queryDate.setFOTImageStatus(value)
+  }
+
+  onFERChange(value: boolean) {
+    this.FERChecked = value
+    this._onProductCheck(value)
+    this.queryDate.setFERImageStatus(value)
+  }
+
+  onLWPChange(value: boolean) {
+    this.LWPChecked = value
+    this._onProductCheck(value)
+    this.queryDate.setLWPImageStatus(value)
+  }
+
+  onCSRChange(value: boolean) {
+    this.CSRChecked = value
+    this._onProductCheck(value)
+    this.queryDate.setCSRImageStatus(value)
+  }
+
+  onSSTChange(value: boolean) {
+    this.SSTChecked = value
+    this._onProductCheck(value)
+    this.queryDate.setSSTImageStatus(value)
+  }
+
+  _onProductCheck(value: boolean) {
+    if (value) {
+      this.displayedImageNum++
+      if (this.displayedImageNum >= this.displayImageLimitNum) {
+        this.isDisable = true
+      }
+    } else {
+      this.displayedImageNum--
+      if (this.displayedImageNum < this.displayImageLimitNum) {
+        this.isDisable = false
+      }
+    }
   }
 
   _getMonthArray(): Array<number> {

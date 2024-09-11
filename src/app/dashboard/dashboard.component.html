@@ -42,14 +42,58 @@
         </div>
         <div class="div-block">
             <label>
-                <input type="checkbox" [(ngModel)]="CLMChecked" (ngModelChange)="onCLMChange($event)">
+                <input type="checkbox" [disabled]="(!CLMChecked && isDisable)" [ngModel]="CLMChecked"
+                    (ngModelChange)="onCLMChange($event)">
                 云检测 CLM
             </label>
         </div>
         <div class="div-block">
             <label>
-                <input type="checkbox" [(ngModel)]="SFMChecked" (ngModelChange)="onSFMChange($event)">
+                <input type="checkbox" [disabled]="(!CLPChecked && isDisable)" [ngModel]="CLPChecked"
+                    (ngModelChange)="onCLPChange($event)">
+                云相态 CLP
+            </label>
+        </div>
+        <div class="div-block">
+            <label>
+                <input type="checkbox" [disabled]="(!SFMChecked && isDisable)" [ngModel]="SFMChecked"
+                    (ngModelChange)="onSFMChange($event)">
                 海雾 SFM
+            </label>
+        </div>
+        <div class="div-block">
+            <label>
+                <input type="checkbox" [disabled]="(!FOTChecked && isDisable)" [ngModel]="FOTChecked"
+                    (ngModelChange)="onFOTChange($event)">
+                海雾光学厚度 FOT
+            </label>
+        </div>
+        <div class="div-block">
+            <label>
+                <input type="checkbox" [disabled]="(!FERChecked && isDisable)" [ngModel]="FERChecked"
+                    (ngModelChange)="onFERChange($event)">
+                海雾有效半径 FER
+            </label>
+        </div>
+        <div class="div-block">
+            <label>
+                <input type="checkbox" [disabled]="(!LWPChecked && isDisable)" [ngModel]="LWPChecked"
+                    (ngModelChange)="onLWPChange($event)">
+                海雾液态水路径 LWP
+            </label>
+        </div>
+        <div class="div-block">
+            <label>
+                <input type="checkbox" [disabled]="(!CSRChecked && isDisable)" [ngModel]="CSRChecked"
+                    (ngModelChange)="onCSRChange($event)">
+                晴空辐射 CSR
+            </label>
+        </div>
+        <div class="div-block">
+            <label>
+                <input type="checkbox" [disabled]="(!SSTChecked && isDisable)" [ngModel]="SSTChecked"
+                    (ngModelChange)="onSSTChange($event)">
+                海表面温度 SST
             </label>
         </div>
     </div>

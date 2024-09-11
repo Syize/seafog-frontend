@@ -31,14 +31,14 @@ export class CanvasComponent implements OnInit {
     "SFM": "",
   }
 
-  imageNum = 1
-  imageArray = [
-    ["http://img.seafog.syize.cn/6.jpg"],
-  ]
-
+  displayedImageUrlRecords: Record<string, string> = {
+    "RGB": "http://img.seafog.syize.cn/RGB/2024/09/10/H9_20240910_1230_RGB_d1.jpg"
+  }
+  imageArray!: string[][]
   testImageCounter = 1
 
   ngOnInit(): void {
+    this._constructImageArray()
     this.setInnerDivStyle()
   }
 
@@ -77,45 +77,30 @@ export class CanvasComponent implements OnInit {
     this.IMAGE_DATE = imageDate
   }
 
-  addImageUrl(url: String) {
-    // if (this.imageNum == 4) {
-    //   return
-    // }
-    if (this.imageArray.length == 1) {
-      if (this.imageArray[0].length == 1) {
-        this.imageArray.push([url.toString()])
-      } else {
-        this.imageArray[0].push(url.toString())
-      }
+  addImageUrl(name: string, url: String) {
+    this.displayedImageUrlRecords[name] = url.toString()
+    this._constructImageArray()
+  }
+
+  removeImageUrl(name: string) {
+    if (name in this.displayedImageUrlRecords) {
+      delete this.displayedImageUrlRecords[name]
+      this._constructImageArray()
+      this.setInnerDivStyle()
+    }
+  }
+
+  _constructImageArray() {
+    let displayedImageUrl = Object.values(this.displayedImageUrlRecords)
+    if (displayedImageUrl.length <= 2) {
+      this.imageArray = [displayedImageUrl]
     } else {
-      if (this.imageArray[0].length == 1) {
-        this.imageArray[0].push(this.imageArray[1][0])
-        this.imageArray[1][0] = url.toString()
-      } else {
-        this.imageArray[1].push(url.toString())
-      }
+      this.imageArray = [
+        displayedImageUrl.slice(0, 2),
+        displayedImageUrl.slice(2)
+      ]
     }
-    this.setInnerDivStyle()
-    // this.imageNum++
-  }
 
-  removeImageUrl() {
-    if (this.imageArray.length == 2) {
-      if (this.imageArray[1].length == 2) {
-        this.imageArray[1].splice(1, 1)
-      } else if (this.imageArray[0].length == 2) {
-        this.imageArray[1][0] = this.imageArray[0][1]
-        this.imageArray[0].splice(1, 1)
-      } else {
-        this.imageArray.splice(1, 1)
-      }
-    }
     this.setInnerDivStyle()
-    this.imageNum--
-  }
-
-  testImage(value: number) {
-    this.imageNum++
-    this.addImageUrl("http://img.seafog.syize.cn/" + this.imageNum + ".jpg")
   }
 }
