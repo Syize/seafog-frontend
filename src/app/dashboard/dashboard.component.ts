@@ -63,6 +63,12 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  ngAfterViewInit(): void {
+    this.queryDate.onCanvasInitDone().subscribe((value) => {
+      this.onSelectHourChange()
+    })
+  }
+
   onSelectYearChange(): void {
     this.monthes = this._getMonthArray()
 
@@ -82,7 +88,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onSelectDayChange(): void {
-    this.onSelectDayChange()
+    this.onSelectHourChange()
   }
 
   onSelectHourChange(): void {
@@ -97,49 +103,49 @@ export class DashboardComponent implements OnInit {
   onCLMChange(value: boolean) {
     this.CLMChecked = value
     this._onProductCheck(value)
-    this.queryDate.setCLMImageStatus(value)
+    this.queryDate.changeProduct({ "CLM": value })
   }
 
   onCLPChange(value: boolean) {
     this.CLPChecked = value
     this._onProductCheck(value)
-    this.queryDate.setCLPImageStatus(value)
+    this.queryDate.changeProduct({ "CLP": value })
   }
 
   onSFMChange(value: boolean) {
     this.SFMChecked = value
     this._onProductCheck(value)
-    this.queryDate.setSFMImageStatus(value)
+    this.queryDate.changeProduct({ "SFM": value })
   }
 
   onFOTChange(value: boolean) {
     this.FOTChecked = value
     this._onProductCheck(value)
-    this.queryDate.setFOTImageStatus(value)
+    this.queryDate.changeProduct({ "FOT": value })
   }
 
   onFERChange(value: boolean) {
     this.FERChecked = value
     this._onProductCheck(value)
-    this.queryDate.setFERImageStatus(value)
+    this.queryDate.changeProduct({ "FER": value })
   }
 
   onLWPChange(value: boolean) {
     this.LWPChecked = value
     this._onProductCheck(value)
-    this.queryDate.setLWPImageStatus(value)
+    this.queryDate.changeProduct({ "LWP": value })
   }
 
   onCSRChange(value: boolean) {
     this.CSRChecked = value
     this._onProductCheck(value)
-    this.queryDate.setCSRImageStatus(value)
+    this.queryDate.changeProduct({ "CSR": value })
   }
 
   onSSTChange(value: boolean) {
     this.SSTChecked = value
     this._onProductCheck(value)
-    this.queryDate.setSSTImageStatus(value)
+    this.queryDate.changeProduct({ "SST": value })
   }
 
   _onProductCheck(value: boolean) {

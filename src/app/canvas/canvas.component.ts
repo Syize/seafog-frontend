@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NgOptimizedImage, NgStyle, NgFor } from "@angular/common";
 import { QueryDateService } from "../query-date.service";
 
@@ -15,9 +15,14 @@ import { QueryDateService } from "../query-date.service";
 })
 export class CanvasComponent implements OnInit {
 
-  constructor(private queryDate: QueryDateService) { }
+  constructor(
+    private queryDate: QueryDateService,
+    private changeDetector: ChangeDetectorRef,
+  ) { }
 
-  IMAGE_DATE: String = "1"
+  imageRootUrl = "http://img.seafog.syize.cn"
+
+  IMAGE_DATE!: Record<string, number>
   innerDivStyle = {
     'height': '100%',
     'width': '100%',
@@ -32,7 +37,6 @@ export class CanvasComponent implements OnInit {
   }
 
   displayedImageUrlRecords: Record<string, string> = {
-    "RGB": "http://img.seafog.syize.cn/RGB/2024/09/10/H9_20240910_1230_RGB_d1.jpg"
   }
   imageArray!: string[][]
   testImageCounter = 1
@@ -43,26 +47,26 @@ export class CanvasComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
+    this.queryDate.getImageDate().subscribe((value) => {
+      this.onImageDateChange(value)
+    })
 
+    this.queryDate.onProductChange().subscribe((value) => {
+      this.onProductChange(value)
+    })
+
+    this.queryDate.canvasInitDone()
+    this.changeDetector.detectChanges()
   }
 
   setInnerDivStyle() {
     if (this.imageArray.length == 1) {
-      // if (this.imageArray[0].length == 1) {
       this.innerDivStyle = {
         'height': '100%',
         'width': '100%',
         'display': 'flex',
         'justify-content': 'center'
       }
-      // } else {
-      //   this.innerDivStyle = {
-      //     'height': '100%',
-      //     'width': '100%',
-      //     'display': 'inline-flex',
-      //     'justify-content': 'center'
-      //   }
-      // }
     } else {
       this.innerDivStyle = {
         'height': '50%',
@@ -73,8 +77,29 @@ export class CanvasComponent implements OnInit {
     }
   }
 
-  onImageDateChange(imageDate: String) {
+  onImageDateChange(imageDate: Record<string, number>) {
     this.IMAGE_DATE = imageDate
+    let keys = Object.keys(this.displayedImageUrlRecords)
+
+    if (keys.length == 0) {
+      this.displayedImageUrlRecords["RGB"] = this._constructImageUrl("RGB")
+    } else {
+      for (let index in keys) {
+        let key = keys[index]
+        this.displayedImageUrlRecords[key] = this._constructImageUrl(key)
+      }
+    }
+
+    this._constructImageArray()
+  }
+
+  onProductChange(data: Record<string, boolean>) {
+    let key = Object.keys(data)[0]
+    if (data[key]) {
+      this.addImageUrl(key, this._constructImageUrl(key))
+    } else {
+      this.removeImageUrl(key)
+    }
   }
 
   addImageUrl(name: string, url: String) {
@@ -102,5 +127,14 @@ export class CanvasComponent implements OnInit {
     }
 
     this.setInnerDivStyle()
+  }
+
+  _constructImageUrl(name: string): string {
+    let year = this.IMAGE_DATE["year"]
+    let month = this.IMAGE_DATE["month"]
+    let day = this.IMAGE_DATE["day"]
+    let hour = this.IMAGE_DATE["hour"]
+
+    return `${this.imageRootUrl}/${name}/${year}/${month}/${day}/H9_${year}${month}${day}_${hour}00_${name}_d1.jpg`
   }
 }

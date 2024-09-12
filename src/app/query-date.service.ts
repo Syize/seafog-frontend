@@ -6,20 +6,13 @@ import { Subject } from "rxjs";
 })
 export class QueryDateService {
 
-  private imageDate: Subject<object> = new Subject<object>()
-  // private imageDate: Subject<Ma
-  private CLMImageStatus: Subject<boolean> = new Subject<boolean>()
-  private CLPImageStatus: Subject<boolean> = new Subject<boolean>()
-  private SFMImageStatus: Subject<boolean> = new Subject<boolean>()
-  private FOTImageStatus: Subject<boolean> = new Subject<boolean>()
-  private FERImageStatus: Subject<boolean> = new Subject<boolean>()
-  private LWPImageStatus: Subject<boolean> = new Subject<boolean>()
-  private CSRImageStatus: Subject<boolean> = new Subject<boolean>()
-  private SSTImageStatus: Subject<boolean> = new Subject<boolean>()
+  private imageDate: Subject<Record<string, number>> = new Subject<Record<string, number>>()
+  private productChange: Subject<Record<string, boolean>> = new Subject<Record<string, boolean>>()
+  private canvasInit: Subject<any> = new Subject<any>()
 
   constructor() { }
 
-  setImageDate(value: object): void {
+  setImageDate(value: Record<string, number>): void {
     this.imageDate.next(value)
   }
 
@@ -27,68 +20,20 @@ export class QueryDateService {
     return this.imageDate.asObservable()
   }
 
-  setCLMImageStatus(value: boolean) {
-    this.CLMImageStatus.next(value)
+  changeProduct(value: Record<string, boolean>) {
+    this.productChange.next(value)
   }
 
-  isCLMImageDisplay() {
-    return this.CLMImageStatus.asObservable()
+  onProductChange() {
+    return this.productChange.asObservable()
   }
 
-  setCLPImageStatus(value: boolean) {
-    this.CLPImageStatus.next(value)
+  canvasInitDone() {
+    this.canvasInit.next("")
   }
 
-  isCLPImageDisplay() {
-    return this.CLPImageStatus.asObservable()
-  }
-
-  setFOTImageStatus(value: boolean) {
-    this.FOTImageStatus.next(value)
-  }
-
-  isFOTImageDisplay() {
-    return this.FOTImageStatus.asObservable()
-  }
-
-  setFERImageStatus(value: boolean) {
-    this.FERImageStatus.next(value)
-  }
-
-  isFERImageDisplay() {
-    return this.FERImageStatus.asObservable()
-  }
-
-  setLWPImageStatus(value: boolean) {
-    this.LWPImageStatus.next(value)
-  }
-
-  isLWPImageDisplay() {
-    return this.LWPImageStatus.asObservable()
-  }
-
-  setCSRImageStatus(value: boolean) {
-    this.CSRImageStatus.next(value)
-  }
-
-  isCSRImageDisplay() {
-    return this.CSRImageStatus.asObservable()
-  }
-
-  setSSTImageStatus(value: boolean) {
-    this.SSTImageStatus.next(value)
-  }
-
-  isSSTImageDisplay() {
-    return this.SSTImageStatus.asObservable()
-  }
-
-  setSFMImageStatus(value: boolean) {
-    this.SFMImageStatus.next(value)
-  }
-
-  isSFMImageDisplay() {
-    return this.SFMImageStatus.asObservable()
+  onCanvasInitDone() {
+    return this.canvasInit.asObservable()
   }
 
 }
