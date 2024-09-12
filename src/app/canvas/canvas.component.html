@@ -1,5 +1,5 @@
 <div class="outer-div">
-    <div *ngFor="let array of imageArray" [ngStyle]="innerDivStyle">
+    <div class="image-list" *ngFor="let array of imageArray">
         <div *ngFor="let url of array" class="image-container">
             <img ngSrc="{{url}}" fill priority>
         </div>

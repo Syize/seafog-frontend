@@ -5,63 +5,54 @@
     <p class="author">Seafog Lab</p>
 </div>
 <div class="controller">
-    <div class="controller-title">
-        <div class="div-block">
-            <p class="p-text">选择日期:</p>
-        </div>
-        <div class="div-block">
-            <p class="p-text">选择产品:</p>
-        </div>
-    </div>
     <div class="controller-content">
-        <div class="div-block">
+        <div class="controller-item date-selector">
+          <p>选择日期：</p>
+          <label>
             <select #selectYear (change)="onSelectYearChange(selectYear.value)">
-                <option *ngFor="let year of years">
-                    {{year}}
-                </option>
-            </select>
-            <p class="p-text">年</p>
+              <option *ngFor="let year of years">
+                  {{year}}
+              </option>
+            </select> 年
+          </label>
+          <label>
             <select #selectMonth (change)="onSelectMonthChange(selectMonth.value)">
                 <option *ngFor="let month of monthes">
                     {{month}}
                 </option>
-            </select>
-            <p class="p-text">月</p>
+            </select> 月
+          </label>
+          <label>
             <select #selectDay (change)="onSelectDayChange(selectDay.value)">
                 <option *ngFor="let day of days">
                     {{day}}
                 </option>
-            </select>
-            <p class="p-text">日</p>
+            </select> 日
+          </label>
+          <label>
             <select #selectHour (change)="onSelectHourChange(selectHour.value)">
                 <option *ngFor="let hour of hours">
                     {{hour}}
                 </option>
-            </select>
-            <p class="p-text">小时</p>
+            </select> 小时
+          </label>
         </div>
-        <div class="div-block">
-            <input #value type="checkbox" (change)="onCLMChange(value.value)">
-            <p class="p-text">云检测 CLM</p>
-        </div>
-        <div class="div-block">
-            <input #value type="checkbox" (change)="onSFMChange(value.value)">
-            <p class="p-text">海雾 SFM</p>
+        <div class="controller-item">
+          <span>选择产品：</span>
+          <label>
+            <input #value type="checkbox" (change)="onCLMChange(value.value)"> 云检测 CLM
+          </label>
+          <label>
+            <input #value type="checkbox" (change)="onSFMChange(value.value)"> 海雾 SFM
+          </label>
         </div>
     </div>
 </div>
 <div class="footer">
     <div class="footer-copyright">
-        <div class="footer-block">
-            <p class="p-footer">Copyright © 2024</p>
-        </div>
-        <div class="footer-block">
-            <a class="a-footer" href="http://ranyz.seafog.syize.cn">海洋遥感与气象监测系统</a>
-        </div>
+      <p class="p-footer">Copyright © 2024 <a class="a-footer" href="http://ranyz.seafog.syize.cn">海洋遥感与气象监测系统</a></p>
     </div>
     <div class="footer-author">
-        <div class="footer-block">
-            <p class="p-footer">System Maintainer: Syize, Ranyz</p>
-        </div>
+      <p class="p-footer">System Maintainer: Syize, Ranyz</p>
     </div>
 </div>

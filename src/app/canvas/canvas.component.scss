@@ -1,24 +1,23 @@
-img {
-    width: 100%;
-    height: auto;
-}
-
 .outer-div {
+  height: 100%;
+  width: 100%;
+
+  .image-list {
     height: 100%;
     width: 100%;
-    display: block;
-}
 
-// .inner-div {
-//     height: 100%;
-//     width: 100%;
-//     display: flex;
-//     justify-content: center;
-// }
+    .image-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-.image-container {
-    position: relative;
-    margin: 1%;
-    height: 96%;
-    aspect-ratio: 722 / 725;
+      img {
+        aspect-ratio: 722 / 725;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+  }
 }

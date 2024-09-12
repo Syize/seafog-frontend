@@ -18,23 +18,17 @@ export class CanvasComponent implements OnInit {
   constructor(private queryDate: QueryDateService) { }
 
   IMAGE_DATE: String = "1"
-  innerDivStyle = {
-    'height': '100%',
-    'width': '100%',
-    'display': 'flex',
-    'justify-content': 'center'
-  }
 
   imageNum = 1
   imageArray = [
-    ["http://img.seafog.syize.cn/1.jpg"],
+    // ["http://img.seafog.syize.cn/1.jpg"],
+    ["https://picsum.photos/722/725"],
+    ["https://picsum.photos/722/725?x=1"],
+    ["https://picsum.photos/722/725?x=2"],
+    ["https://picsum.photos/722/725?x=3"],
   ]
 
   testImageCounter = 1
-
-  ngOnInit(): void {
-    this.setInnerDivStyle()
-  }
 
   ngAfterViewInit(): void {
     this.queryDate.getImageDate().subscribe(this.onImageDateChange)
@@ -51,35 +45,12 @@ export class CanvasComponent implements OnInit {
     })
   }
 
-  setInnerDivStyle() {
-    if (this.imageArray.length == 1) {
-      // if (this.imageArray[0].length == 1) {
-      this.innerDivStyle = {
-        'height': '100%',
-        'width': '100%',
-        'display': 'flex',
-        'justify-content': 'center'
-      }
-      // } else {
-      //   this.innerDivStyle = {
-      //     'height': '100%',
-      //     'width': '100%',
-      //     'display': 'inline-flex',
-      //     'justify-content': 'center'
-      //   }
-      // }
-    } else {
-      this.innerDivStyle = {
-        'height': '50%',
-        'width': '100%',
-        'display': 'inline-flex',
-        'justify-content': 'center'
-      }
-    }
-  }
-
   onImageDateChange(imageDate: String) {
     this.IMAGE_DATE = imageDate
+  }
+
+
+  ngOnInit(): void {
   }
 
   addImageUrl(url: String) {
@@ -100,7 +71,6 @@ export class CanvasComponent implements OnInit {
         this.imageArray[1].push(url.toString())
       }
     }
-    this.setInnerDivStyle()
     // this.imageNum++
   }
 
@@ -115,7 +85,6 @@ export class CanvasComponent implements OnInit {
         this.imageArray.splice(1, 1)
       }
     }
-    this.setInnerDivStyle()
     this.imageNum--
   }
 
