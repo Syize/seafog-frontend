@@ -20,7 +20,7 @@ export class CanvasComponent implements OnInit {
     private changeDetector: ChangeDetectorRef,
   ) { }
 
-  imageRootUrl = "http://img.seafog.syize.cn"
+  imageRootUrl = "H9_20241218_1000_RGB_d1.jpg"
 
   IMAGE_DATE!: Record<string, number>
   innerDivStyle = {
@@ -117,16 +117,17 @@ export class CanvasComponent implements OnInit {
 
   _constructImageArray() {
     let displayedImageUrl = Object.values(this.displayedImageUrlRecords)
-    if (displayedImageUrl.length <= 2) {
-      this.imageArray = [displayedImageUrl]
-    } else {
-      this.imageArray = [
-        displayedImageUrl.slice(0, 2),
-        displayedImageUrl.slice(2)
-      ]
-    }
+    this.imageArray = [[this.imageRootUrl]]
+    // if (displayedImageUrl.length <= 2) {
+    //   this.imageArray = [displayedImageUrl]
+    // } else {
+    //   this.imageArray = [
+    //     displayedImageUrl.slice(0, 2),
+    //     displayedImageUrl.slice(2)
+    //   ]
+    // }
 
-    this.setInnerDivStyle()
+    // this.setInnerDivStyle()
   }
 
   _constructImageUrl(name: string): string {
@@ -135,6 +136,6 @@ export class CanvasComponent implements OnInit {
     let day = this.IMAGE_DATE["day"]
     let hour = this.IMAGE_DATE["hour"]
 
-    return `${this.imageRootUrl}/${name}/${year}/${month}/${day}/H9_${year}${month}${day}_${hour}00_${name}_d1.jpg`
+    return `${this.imageRootUrl}/${name}/${year}/${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/H9_${year}${month.toString().padStart(2, '0')}${day.toString().padStart(2, '0')}_${hour.toString().padStart(2, '0')}00_${name}_d1.jpg`
   }
 }

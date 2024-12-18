@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
   isDisable = false;
 
   ngOnInit(): void {
-    let currentDate = new Date()
+    let currentDate = new Date(new Date().getTime() - 1 * 60 * 60 * 1000)
     this.currentYear = currentDate.getFullYear()
     this.currentMonth = currentDate.getMonth() + 1  // WTF is this ???
     this.currentDay = currentDate.getDate()
